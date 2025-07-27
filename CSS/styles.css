@@ -1,0 +1,352 @@
+* {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  font-family: "Montserrat", sans-serif;
+}
+
+.navbar {
+  position: fixed; /* Fix navbar to top */
+  top: 7vh; /* Stick to top */
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 59.4px; /* 54px * 1.1 */
+  color: #fff;
+  /* background: #111111; */
+  overflow: visible; /* Allow content to expand */
+}
+
+.nav-list {
+  position: relative; /* Use relative for better layout */
+  background-color: rgba(255, 255, 255, 0.542);
+  height: 110%;
+  width: 88%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-align: center;
+  list-style-type: none;
+  margin: 0;
+  border-radius: 50px;
+  box-sizing: border-box;
+  overflow-x: auto; /* Enable horizontal scrolling if elements overflow */
+}
+
+.nav-list li {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 0 14px; /* 15px * 1.1 */
+  border-radius: 25px; /* 20px * 1.1 */
+  width: auto; /* Let width be auto */
+  min-width: 0; /* Remove any minimum width */
+  height: 46.2px; /* 42px * 1.1 */
+  padding: 0 20px; /* Add horizontal padding for spacing */
+  white-space: nowrap; /* Prevent text from wrapping */
+  border: 1.2px solid black;
+  transition: 0.3s;
+}
+
+/* Anchor the last li to the right */
+.nav-list li:last-child {
+  margin-left: auto; /* Push last item to the far right */
+  right: 0;
+}
+
+.nav-list li:hover {
+  background-color: #f0f0f0; /* Light gray background on hover */
+  transform: scale(1.1); /* Use transform for scaling */
+  transition: background-color 0.3s ease; /* Smooth transition */
+  transition: transform 0.3s;
+}
+
+.nav-list li a {
+  text-align: center;
+  text-decoration: none;
+  margin: auto;
+  width: auto; /* Let anchor width be auto */
+  color: #000000;
+  font-size: 24.2px; /* 22px * 1.1 */
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.home {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background-color: rgb(0, 0, 0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  filter: blur(var(--home-blur, 0px));
+  transition: filter 0.2s;
+}
+
+.home::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("../IMG/Homescreen Background.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  filter: blur(var(--home-blur, 10px)); /* Use CSS variable for blur */
+  z-index: 0;
+  transition: filter 0.2s;
+}
+
+/* Add a separate blur layer only behind .home-content */
+.home-content-blur {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 90%;
+  height: 90vh;
+  transform: translate(-50%, -50%);
+  background-image: url("../IMG/Homescreen Background.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  filter: blur(20px); /* Stronger/different blur for content */
+  z-index: 1;
+  pointer-events: none; /* Prevent interaction */
+}
+
+.home-content {
+  z-index: 2;
+  width: 90%;
+  height: 90vh;
+  background-color: rgba(
+    225,
+    225,
+    225,
+    0.5
+  ); /* Lower opacity for background only */
+  justify-self: center;
+  border-radius: 50px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  box-shadow: 5px 5px 20px;
+  /* Do NOT use the opacity property here */
+}
+
+#welcome {
+  font-weight: 400;
+  letter-spacing: 20px;
+  font-size: 50px;
+  color: white;
+  margin: 0;
+}
+
+#heading {
+  position: relative;
+  top: 0;
+  font-size: 120px;
+  font-weight: 800;
+  /* color: #B2E6B2; */
+  background: linear-gradient(
+    90deg,
+    rgb(255, 255, 255) 5%,
+    rgb(182, 255, 191) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.home-content-text {
+  position: absolute;
+  left: 50%;
+  bottom: 40px; /* Adjust as needed for spacing from bottom */
+  transform: translateX(-50%);
+  background-color: rgba(255, 255, 255, 0.632);
+  border-radius: 30px;
+  font-size: 24px;
+  font-weight: 400;
+  color: #000000;
+  max-width: 100%;
+  line-height: 1.4;
+  margin-top: 0; /* Remove margin-top since it's now positioned */
+  width: 88%; /* Optional: Limit width for better readability */
+  padding: 20px;
+  box-shadow: 2px 2px 5px;
+}
+
+.home-content-text::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  filter: blur(10px); /* Blur effect for the content */
+  z-index: -1; /* Place behind the content */
+}
+
+.kitaab-logo-home {
+  position: absolute;
+  width: 350px;
+  margin-left: 35%;
+  margin-bottom: 8%;
+  rotate: 25deg;
+}
+
+.home-content > div {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  overflow: visible; /* Prevent overflow on hover */
+  box-sizing: border-box;
+}
+
+.home-content > div > * {
+  margin: 0 10px;
+}
+
+.home-content > div > *:hover {
+  transform: scale(1.2);
+  transition: transform 0.3s;
+}
+
+.home-content > div > img {
+  position: relative;
+  width: 60px;
+  border-radius: 100%;
+  height: 60px;
+  /* margin-right: 35%; */
+  border: 1px solid white;
+  background: rgba(220, 220, 220, 0.408);
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.home-content > div > button {
+  position: relative;
+  background: none;
+  background: rgba(220, 220, 220, 0.408);
+  color: white;
+  border: white 1px solid;
+  border-radius: 50px;
+  font-size: 20px;
+  padding: 0 50px;
+  width: auto;
+  height: 60px;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.home-content > div > button:hover + img {
+  transform: translateX(30px); /* Move right and scale */
+  transition: transform 0.3s;
+}
+
+.about {
+  position: relative;
+  height: 100vh;
+  /* Remove background-image from here */
+  background: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.about::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("../IMG/NOTEBOOKS.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  filter: blur(12px); /* Adjust blur as needed */
+  z-index: 0;
+  pointer-events: none;
+}
+
+.about-text {
+  z-index: 1;
+  height: 78vh;
+  margin-top: 80px;
+}
+
+.about-content {
+  position: relative;
+  background: rgba(228, 228, 228, 0.749);
+  margin-top: 80px;
+  height: 80vh;
+  width: 70vw;
+  padding: 0px 35px;
+  margin-right: 80px;
+  border-radius: 50px;
+  z-index: 1; /* Ensure content is above the blurred background */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: start;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.about-content::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("../IMG/NOTEBOOKS.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  filter: blur(100px); /* Adjust blur as needed */
+  z-index: -1; /* Place behind the content */
+}
+
+.about-content h1 {
+  font-size: 80px;
+  font-weight: 900;
+  text-align: start;
+  color: white;
+}
+
+.about-content p {
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 1.6;
+  /* background: linear-gradient(
+    90deg,
+    rgb(255, 255, 255) 40%,
+    rgb(0, 0, 0) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; */
+  color: white;
+  margin-top: 20px;
+  text-align: justify; /* Justify text for better readability */
+}
+
+.about-logo {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding-bottom: 100px;
+  width: 250px;
+  top: 6%;
+  right: 16%;
+  rotate: 45deg;
+  height: auto;
+  max-width: none; /* Allow image to maintain its size */
+  z-index: 2; /* Place behind the text */
+}
