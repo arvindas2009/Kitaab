@@ -1,0 +1,420 @@
+* {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  font-family: "Montserrat", sans-serif;
+}
+
+.navbar {
+  position: fixed; /* Fix navbar to top */
+  top: 4vh; /* Stick to top */
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 59.4px; /* 54px * 1.1 */
+  color: #fff;
+  /* background: #111111; */
+  overflow: visible; /* Allow content to expand */
+}
+
+.nav-list {
+  position: relative; /* Use relative for better layout */
+  background-color: rgba(0, 0, 0, 0.6);
+  height: 110%;
+  width: 88%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-align: center;
+  list-style-type: none;
+  margin: 0;
+  border-radius: 50px;
+  box-sizing: border-box;
+  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.5);
+  overflow-x: auto; /* Enable horizontal scrolling if elements overflow */
+  backdrop-filter: blur(5px); /* Blur whatever is behind the navlist */
+  -webkit-backdrop-filter: blur(5px); /* Safari support */
+}
+
+.nav-list li {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 0 14px; /* 15px * 1.1 */
+  border-radius: 25px; /* 20px * 1.1 */
+  width: auto; /* Let width be auto */
+  min-width: 0; /* Remove any minimum width */
+  height: 46.2px; /* 42px * 1.1 */
+  padding: 0 20px; /* Add horizontal padding for spacing */
+  white-space: nowrap; /* Prevent text from wrapping */
+  border: 1.2px solid rgb(255, 255, 255);
+  transition: 0.3s;
+}
+
+/* Anchor the last li to the right */
+.nav-list li:last-child {
+  margin-left: auto; /* Push last item to the far right */
+  right: 0;
+}
+
+.nav-list li:hover {
+  background-color: rgba(0, 0, 0, 0.6);
+  transform: scale(1.1); /* Use transform for scaling */
+  transition: background-color 0.3s ease; /* Smooth transition */
+  transition: transform 0.3s;
+}
+
+.nav-list li a {
+  text-align: center;
+  text-decoration: none;
+  margin: auto;
+  width: auto; /* Let anchor width be auto */
+  color: #ffffff;
+  font-size: 24.2px; /* 22px * 1.1 */
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.about {
+  position: relative;
+  justify-content: center;
+  align-items: center;
+
+  height: 100vh; /* Full height minus navbar */
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  background: url("../IMG/ABOUT/GREEN\ PAPER\ BACKGROUND.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.vision-heading {
+  position: relative;
+  margin-top: 4%; /* Adjusted for better visibility */
+  font-size: 200px; /* Adjusted for better visibility */
+  letter-spacing: 20px;
+  color: #ffffff;
+  text-align: center;
+  width: 80%; /* Adjust width as needed */
+
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+
+  z-index: 1;
+}
+
+.vision-container h1,
+.vision-container-2 h1 {
+  position: relative;
+  font-size: 40px; /* Adjusted for better readability */
+  color: white;
+}
+
+.vision-eclipse {
+  position: absolute;
+  margin-bottom: 20px;
+  max-height: 11 0%;
+  min-width: 100vw;
+  z-index: 0;
+}
+
+.vision-container p,
+.vision-container-2 p {
+  position: relative;
+  font-size: 24px; /* Adjusted for better readability */
+  color: #ffffff;
+}
+
+.vision-container {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  width: 90vw;
+  top: 2%;
+  /* background-color: #a1e9ff; */
+}
+
+.vision-container img,
+.vision-container-2 img {
+  height: 300px;
+}
+
+.vision-container-2 {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  width: 90vw;
+  top: 10%;
+  /* background-color: #a1e9ff; */
+}
+
+.vision-container-2 div {
+  text-align: end;
+}
+
+.vision-container div,
+.vision-container-2 div {
+  width: 50%;
+  padding: 20px; /* Add padding for better spacing */
+}
+
+.achievement {
+  position: relative;
+  height: 100%;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background: url("../IMG/ABOUT/GREEN\ PAPER\ BACKGROUND.png") no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.achievement > * {
+  z-index: 1;
+}
+
+.achievement::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100vw;
+  background: rgba(0, 0, 0, 0.8);
+
+  z-index: 0;
+}
+
+.achievement-heading {
+  position: relative;
+  font-size: 200px; /* Adjusted for better visibility */
+  letter-spacing: 20px;
+  color: #ffffff;
+  text-align: center;
+  width: 80%;
+
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+
+  margin-top: 4%; /* Adjusted for better visibility */
+
+  z-index: 1;
+}
+
+.achievement-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 90vw;
+  top: 2%;
+  padding: 20px 0;
+  border-radius: 50px;
+
+  background-color: black;
+}
+
+.achievement-item {
+  position: relative;
+  width: 90%;
+  margin: 20px auto; /* Center the items */
+  padding: 20px;
+  border-radius: 10px;
+  color: #ffffff;
+  text-align: left;
+  justify-content: center;
+
+  display: flex;
+  flex-direction: row;
+
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+
+  z-index: 1;
+}
+
+.achievement-item img {
+  width: 25%; /* Adjust size as needed */
+  height: auto;
+  margin-right: 20px; /* Space between image and text */
+}
+
+.achievement-item div,
+.achievement-item-2 div {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.achievement-item h2 {
+  font-size: 50px;
+}
+
+.achievement-item p {
+  font-size: 24px;
+  margin-top: 10px;
+}
+
+.achievement-item-2 div {
+  text-align: right !important;
+}
+
+.achievement-item-2 h2,
+.achievement-item-2 p {
+  margin-right: 20px;
+}
+
+.team {
+  position: relative;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+
+  background: url("../IMG/NETHRA AND KASVI - BLURRED.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden; /* Prevent overflow */
+}
+
+.team-content {
+  z-index: 2;
+  width: 90%;
+  max-height: 90vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 50px;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  box-shadow: 5px 5px 20px;
+  overflow-y: auto;
+  overflow-x: visible;
+}
+
+/* background texture behind content */
+.team-content::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 200%;
+  background: url("../IMG/PAPER TEXTURE.jpg");
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  background-repeat: repeat;
+  filter: blur(5px); /* Stronger/different blur for content */
+  z-index: -2; /* moved behind the overlay */
+  border-radius: inherit;
+  pointer-events: none; /* Prevent interaction */
+}
+
+/* dark overlay above the image, below the content */
+.team-content::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.8); /* adjust alpha to taste */
+  z-index: -1; /* sits above ::before and below the content */
+  border-radius: inherit;
+  pointer-events: none; /* Prevent interaction */
+}
+
+.members {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 88%;
+  overflow: visible; /* Allow content to expand */
+  height: auto; /* Adjust height to fit content */
+  /* Remove overflow-y: auto; */
+}
+
+.members2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 88%;
+  height: auto;
+  overflow: visible; /* Allow content to expand */
+  height: auto; /* Adjust height to fit content */
+  /* Remove overflow-y: auto; */
+}
+
+.member-1 {
+  margin-top: 8% !important;
+}
+
+.members h1,
+.members2 h1 {
+  font-weight: 800;
+  font-size: 280%;
+  color: white;
+}
+
+.members h2,
+.members2 h2 {
+  font-weight: 800;
+  font-size: 200%;
+  color: white;
+}
+
+.members p,
+.members2 p {
+  padding: 5px 0 0 0;
+  font-size: 140%;
+  color: white;
+}
+
+.members div {
+  text-align: start;
+  padding: 0 20px;
+}
+
+.members2 div {
+  text-align: end;
+  padding: 0 20px;
+}
+
+.members img,
+.members2 img {
+  width: 500px;
+  height: auto;
+}
+
+.team-divider {
+  /* display: block; */
+  width: 100%;
+  min-height: 181px;
+  height: auto;
+  margin: 5px auto;
+}

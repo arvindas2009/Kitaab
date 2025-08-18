@@ -1,0 +1,535 @@
+* {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  font-family: "Montserrat", sans-serif;
+}
+
+.navbar {
+  position: fixed; /* Fix navbar to top */
+  top: 7vh; /* Stick to top */
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 59.4px; /* 54px * 1.1 */
+  color: #fff;
+  /* background: #111111; */
+  overflow: visible; /* Allow content to expand */
+}
+
+.nav-list {
+  position: relative; /* Use relative for better layout */
+  background-color: rgba(0, 0, 0, 0.6);
+  height: 110%;
+  width: 88%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-align: center;
+  list-style-type: none;
+  margin: 0;
+  border-radius: 50px;
+  box-sizing: border-box;
+  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.5);
+  overflow-x: auto; /* Enable horizontal scrolling if elements overflow */
+  backdrop-filter: blur(5px); /* Blur whatever is behind the navlist */
+  -webkit-backdrop-filter: blur(5px); /* Safari support */
+}
+
+.nav-list li {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 0 14px; /* 15px * 1.1 */
+  border-radius: 25px; /* 20px * 1.1 */
+  width: auto; /* Let width be auto */
+  min-width: 0; /* Remove any minimum width */
+  height: 46.2px; /* 42px * 1.1 */
+  padding: 0 20px; /* Add horizontal padding for spacing */
+  white-space: nowrap; /* Prevent text from wrapping */
+  border: 1.2px solid rgb(255, 255, 255);
+  transition: 0.3s;
+}
+
+/* Anchor the last li to the right */
+.nav-list li:last-child {
+  margin-left: auto; /* Push last item to the far right */
+  right: 0;
+}
+
+.nav-list li:hover {
+  background-color: #3d7459; /* Light gray background on hover */
+  transform: scale(1.1); /* Use transform for scaling */
+  transition: background-color 0.3s ease; /* Smooth transition */
+  transition: transform 0.3s;
+}
+
+.nav-list li a {
+  text-align: center;
+  text-decoration: none;
+  margin: auto;
+  width: auto; /* Let anchor width be auto */
+  color: #ffffff;
+  font-size: 24.2px; /* 22px * 1.1 */
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.home {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background-color: rgb(0, 0, 0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  filter: blur(var(--home-blur, 0px));
+  transition: filter 0.2s;
+}
+
+.home::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background-image: url("../IMG/Homescreen Background.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  filter: blur(var(--home-blur, 10px)); /* Use CSS variable for blur */
+  z-index: 0;
+  transition: filter 0.2s;
+}
+
+/* Add a separate blur layer only behind .home-content */
+.home-content-blur {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 90%;
+  height: 90vh;
+  transform: translate(-50%, -50%);
+  background-image: url("../IMG/Homescreen Background.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  filter: blur(20px); /* Stronger/different blur for content */
+  z-index: 1;
+  pointer-events: none; /* Prevent interaction */
+}
+
+.home-content {
+  z-index: 2;
+  width: 90%;
+  height: 90vh;
+  background-color: rgba(0, 0, 0, 0.5); /* Lower opacity for background only */
+  justify-self: center;
+  border-radius: 50px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  box-shadow: 5px 5px 20px;
+  /* Do NOT use the opacity property here */
+}
+
+#welcome {
+  font-weight: 400;
+  letter-spacing: 20px;
+  font-size: 50px;
+  color: white;
+  margin: 0;
+}
+
+#heading {
+  position: relative;
+  top: 0;
+  font-size: 120px;
+  font-weight: 800;
+  background: #b2e6b2;
+  background: linear-gradient(
+    90deg,
+    rgba(178, 230, 178, 1) 0%,
+    rgba(255, 255, 255, 1) 50%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.home-content-text {
+  position: absolute;
+  left: 50%;
+  bottom: 40px; /* Adjust as needed for spacing from bottom */
+  transform: translateX(-50%);
+  background-color: rgba(255, 255, 255, 0.632);
+  border-radius: 30px;
+  font-size: 24px;
+  font-weight: 400;
+  color: #000000;
+  max-width: 100%;
+  line-height: 1.4;
+  margin-top: 0; /* Remove margin-top since it's now positioned */
+  width: 88%; /* Optional: Limit width for better readability */
+  padding: 20px;
+  box-shadow: 2px 2px 5px;
+}
+
+.home-content-text::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  filter: blur(10px); /* Blur effect for the content */
+  z-index: -1; /* Place behind the content */
+}
+
+.kitaab-logo-home {
+  position: absolute;
+  width: 350px;
+  margin-bottom: 15%;
+}
+
+.home-content > div {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  overflow: visible; /* Prevent overflow on hover */
+  box-sizing: border-box;
+}
+
+.home-content > div > * {
+  margin: 0 10px;
+}
+
+.home-content > div > *:hover {
+  transform: scale(1.2);
+  transition: transform 0.3s;
+}
+
+.home-content > div > img {
+  position: relative;
+  width: 60px;
+  border-radius: 100%;
+  height: 60px;
+  /* margin-right: 35%; */
+  border: 1px solid white;
+  background: rgba(220, 220, 220, 0.408);
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.home-content > div > button {
+  position: relative;
+  background: none;
+  background: rgba(220, 220, 220, 0.408);
+  color: white;
+  border: white 1px solid;
+  border-radius: 50px;
+  font-size: 20px;
+  padding: 0 50px;
+  width: auto;
+  height: 60px;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.home-content > div > button:hover + img {
+  transform: translateX(30px); /* Move right and scale */
+  transition: transform 0.3s;
+}
+
+.about {
+  position: relative;
+  height: 110vh;
+  /* Remove background-image from here */
+  background: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.about::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("../IMG/NOTEBOOKS.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  filter: blur(12px) brightness(0.35); /* Darken via brightness */
+  z-index: 0;
+  pointer-events: none;
+}
+
+.about-text {
+  z-index: 1;
+  height: 78vh;
+}
+
+.about-content {
+  position: relative;
+  background: rgba(0, 0, 0, 0.8);
+  /* margin-top: 10%; */
+  height: auto;
+  width: 70vw;
+  padding: 0px 35px;
+  margin-right: 80px;
+  border-radius: 50px;
+  z-index: 1; /* Ensure content is above the blurred background */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: start;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.about-content::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("../IMG/NOTEBOOKS.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  filter: blur(100px) brightness(0.35); /* Darken the content background too */
+  z-index: -1; /* Place behind the content */
+}
+
+.about-content h1 {
+  font-size: 80px;
+  font-weight: 900;
+  text-align: start;
+  color: rgb(255, 255, 255);
+  padding: 20px 0;
+}
+
+.about-content p {
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.6;
+  text-wrap: balance;
+  text-wrap-style: pretty;
+  /* background: linear-gradient(
+    90deg,
+    rgb(255, 255, 255) 40%,
+    rgb(0, 0, 0) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; */
+  width: 90%;
+  padding: 0 0 50px 0;
+  color: white;
+  text-align: justify; /* Justify text for better readability */
+}
+
+.about-logo {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding-bottom: 100px;
+  width: 250px;
+  top: 6%;
+  right: 16%;
+  rotate: 45deg;
+  height: auto;
+  max-width: none; /* Allow image to maintain its size */
+  z-index: 2; /* Place behind the text */
+}
+
+.department {
+  position: relative;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  background: url("../IMG/DEPARTMENT BACKGROUND.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  /* prevent the page from scrolling when the inner pane scrolls */
+  overflow: hidden;
+}
+
+/* scrolling container inside .department */
+.department-content {
+  z-index: 2;
+  width: 90%;
+  height: 70vh; /* use viewport height so inner scroll is fixed to the pane */
+  max-height: calc(100vh - 120px); /* reserve space for header/margins */
+  margin-top: 20px;
+  background-color: rgba(0, 0, 0, 0.75);
+  border-radius: 50px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  box-sizing: border-box;
+  min-width: 0; /* allow children to shrink properly */
+
+  /* make the content scrollable but keep scrolling contained */
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+  overscroll-behavior: contain; /* prevents the page from receiving scroll when at the edges */
+
+  /* optional: snap children vertically */
+  scroll-snap-type: y proximity;
+  gap: 20px;
+
+  position: relative;
+  box-shadow: 5px 5px 20px;
+}
+
+.department-heading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-top: 7%;
+  margin-left: 8%;
+  height: 10%;
+  border-radius: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+
+  /* translucent background so backdrop-filter can blur content behind */
+  background-color: rgba(61, 116, 89, 0.35);
+
+  /* blur whatever is behind this element */
+  backdrop-filter: blur(8px) saturate(1.05);
+  -webkit-backdrop-filter: blur(8px) saturate(1.05);
+
+  /* allow the box to size reliably and avoid overflow issues */
+  box-sizing: border-box;
+  padding: 8px 24px;
+  pointer-events: auto;
+}
+
+/* keep pseudo-element only if you want an extra tint; don't reapply backdrop-filter here */
+.department-heading::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(
+    61,
+    116,
+    89,
+    0
+  ); /* transparent tint; change alpha if you want stronger color */
+  z-index: -1;
+  pointer-events: none;
+}
+
+.department-heading h1 {
+  font-size: 50px;
+  font-weight: 800;
+  color: white;
+  padding: 0 40px;
+
+  z-index: 2;
+}
+
+/* Ensure child panels don't stretch and snap correctly */
+.department-solo {
+  flex: 0 0 auto; /* prevent children from growing/shrinking */
+  width: 90%;
+  scroll-snap-align: start; /* snap each department into view */
+}
+
+/* Small, minimal custom scrollbar (optional) */
+.department-content::-webkit-scrollbar {
+  width: 10px;
+}
+.department-content::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 10px;
+}
+.department-content::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+}
+
+.department-solo {
+  width: 90%;
+  height: auto;
+  background-color: #000000;
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  justify-content: center;
+  border-radius: 60px;
+  padding: 20px 0;
+}
+
+.solo-dep-heading {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: rgba(61, 116, 89, 0.8);
+  height: 80px;
+  width: 25%;
+  margin-top: 2%;
+  margin-left: 2%;
+  box-sizing: border-box;
+  pointer-events: auto;
+  border-radius: 100px;
+}
+
+.solo-dep-heading h1 {
+  font-size: 35x;
+  font-weight: 800;
+  color: white;
+  box-sizing: border-box;
+  /* padding: 8px 24px; */
+  pointer-events: auto;
+}
+
+.department-1 {
+  margin-top: 4%; /* small gap above the section */
+}
+
+.department-member {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.dep-mem {
+  display: flex;
+  flex-direction: column;
+  padding: 0 20px;
+}
+
+.dep-mem h1 {
+  font-size: 30px;
+  font-weight: 800;
+  color: white;
+  margin-bottom: 10px;
+  padding: 20px 0;
+}

@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kitaab</title>
+    <link rel="stylesheet" href="CSS/styles.css" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="JS/script.js"></script>
+  </head>
+  <body>
+    <nav class="navbar">
+      <ul class="nav-list" data-aos="fade-down">
+        <li><a href="index.html">HOME</a></li>
+        <li><a href="PAGES/about.html">ABOUT</a></li>
+        <li><a href="PAGES/about.html">TEAM</a></li>
+        <li><a href="PAGES/about.html">ACHIEVEMENTS</a></li>
+        <li><a href="connect.html">CONNECT</a></li>
+      </ul>
+    </nav>
+    <section class="home">
+      <div class="home-content-blur"></div>
+      <div class="home-content">
+        <img
+          src="SVG/FRAME - HOME TOP RIGHT.svg"
+          alt=""
+          style="position: absolute; top: 0; right: 0; height: 250px"
+        />
+        <img
+          src="IMG/HOME - KITAAB LOGO.png"
+          alt=""
+          class="kitaab-logo-home"
+          data-aos="fade-up"
+        />
+        <h1 id="welcome" data-aos="fade-up">WE ARE</h1>
+        <h1 id="heading" data-aos="fade-up">KITAAB</h1>
+        <!-- <div class="home-content-text">
+          <p data-aos="flip-up">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. Duis aute irure dolor in
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+            culpa qui officia deserunt mollit anim id est laborum.
+          </p>
+        </div> -->
+        <div data-aos="fade-up">
+          <button href="#team">
+            <a href="#team" style="text-decoration: none; color: white"
+              >DEPARTMENTS</a
+            >
+          </button>
+          <img src="ICONS/arrow-down.svg" alt="" href="#team" />
+        </div>
+        <img
+          src="SVG/FRAME - HOME BOTTOM LEFT.svg"
+          alt=""
+          style="
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 400px;
+            z-index: -1;
+          "
+        />
+      </div>
+    </section>
+
+    <section class="about" id="about">
+      <img
+        src="SVG/FRAME - ABOUT TOP LEFT.svg"
+        alt=""
+        style="position: absolute; top: 0; left: 0; height: 250px"
+      />
+      <img
+        src="SVG/FRAME - ABOUT BOTTOM RIGHT.svg"
+        alt=""
+        style="position: absolute; bottom: 0; right: 0; height: 400px"
+      />
+      <img
+        src="IMG/Logos/MAIN.png"
+        alt=""
+        class="about-logo"
+        data-aos="fade-up-right"
+      />
+      <div class="about-content" data-aos="flip-up">
+        <h1>OUR AIM</h1>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed placerat
+          euismod maximus. Cras congue ante purus, eu pulvinar tellus vulputate
+          a. In in eros vel urna eleifend maximus in eu velit. Nam ultricies
+          viverra elit, id mollis erat cursus a. Nam a convallis libero, eget
+          viverra diam. Curabitur non ipsum lobortis, fringilla magna vel,
+          placerat sem. Donec egestas enim eu velit lacinia pellentesque.
+          Maecenas et est nibh. Suspendisse aliquet nisl id turpis tempus, sit
+          amet pharetra diam mollis. Pellentesque eros lorem, congue eu pretium
+          sit amet, egestas ut urna. Quisque non pharetra velit, sed blandit
+          leo. Phasellus sit amet libero quis nisl gravida commodo vitae sed
+          arcu. Aliquam erat volutpat. Etiam tincidunt leo a tempus vehicula.
+          Donec augue justo, elementum sit amet cursus eu, tristique eget massa.
+          Maecenas rhoncus quis lorem vel blandit. Suspendisse aliquet nisl id
+          turpis tempus, sit amet pharetra diam mollis. Pellentesque eros lorem,
+          congue eu pretium sit amet, egestas ut urna. Quisque non pharetra
+          velit, sed blandit leo. Pellentesque eros lorem, congue eu pretium sit
+          amet, egestas ut urna. Quisque non pharetra velit, sed blandit leo.
+          Pellentesque eros lorem, congue eu pretium sit amet, egestas ut urna.
+          Quisque non pharetra velit, sed blandit leo. Pellentesque eros lorem,
+          congue eu pretium sit amet, egestas ut urna. Quisque non pharetra
+          velit, sed blandit leo.
+        </p>
+      </div>
+      <img
+        src="SVG/ABOUT US - TEXT.svg"
+        alt=""
+        class="about-text"
+        data-aos="fade-right"
+      />
+    </section>
+    <!-- <section class="team" id="team">
+      <section
+        class="team-content"
+        data-aos="zoom-out-up"
+        data-aos-duration="1000"
+      >
+        <div
+          class="members member-1"
+          data-aos="flip-down"
+          data-aos-duration="1500"
+        >
+          <img src="MEMBERS/SAMPLE MEMBER PICTURE.png" alt="" />
+          <div>
+            <h1>NAME</h1>
+            <h2>Position</h2>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+              placerat euismod maximus. Cras congue ante purus, eu pulvinar
+              tellus vulputate a. In in eros vel urna eleifend maximus in eu
+              velit. Nam ultricies viverra elit, id mollis erat cursus a. Nam a
+              convallis libero, eget viverra diam.
+            </p>
+          </div>
+        </div>
+        <img src="SVG/br.svg" alt="" class="team-divider" width="100%" />
+        <div class="members2" data-aos="flip-up" data-aos-duration="1500">
+          <div>
+            <h1>NAME</h1>
+            <h2>Position</h2>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+              placerat euismod maximus. Cras congue ante purus, eu pulvinar
+              tellus vulputate a. In in eros vel urna eleifend maximus in eu
+              velit. Nam ultricies viverra elit, id mollis erat cursus a. Nam a
+              convallis libero, eget viverra diam.
+            </p>
+          </div>
+          <img src="MEMBERS/SAMPLE MEMBER PICTURE.png" alt="" />
+        </div>
+        <img src="SVG/br.svg" alt="" class="team-divider" width="100%" />
+        <div class="members">
+          <img src="MEMBERS/SAMPLE MEMBER PICTURE.png" alt="" />
+          <div>
+            <h1>NAME</h1>
+            <h2>Position</h2>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+              placerat euismod maximus. Cras congue ante purus, eu pulvinar
+              tellus vulputate a. In in eros vel urna eleifend maximus in eu
+              velit. Nam ultricies viverra elit, id mollis erat cursus a. Nam a
+              convallis libero, eget viverra diam.
+            </p>
+          </div>
+        </div>
+        <img src="SVG/br.svg" alt="" class="team-divider" width="100%" />
+        <div class="members2">
+          <div>
+            <h1>NAME</h1>
+            <h2>Position</h2>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+              placerat euismod maximus. Cras congue ante purus, eu pulvinar
+              tellus vulputate a. In in eros vel urna eleifend maximus in eu
+              velit. Nam ultricies viverra elit, id mollis erat cursus a. Nam a
+              convallis libero, eget viverra diam.
+            </p>
+          </div>
+          <img src="MEMBERS/SAMPLE MEMBER PICTURE.png" alt="" />
+        </div>
+        <img src="SVG/br.svg" alt="" class="team-divider" width="100%" />
+        <div class="members">
+          <img src="MEMBERS/SAMPLE MEMBER PICTURE.png" alt="" />
+          <div>
+            <h1>NAME</h1>
+            <h2>Position</h2>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+              placerat euismod maximus. Cras congue ante purus, eu pulvinar
+              tellus vulputate a. In in eros vel urna eleifend maximus in eu
+              velit. Nam ultricies viverra elit, id mollis erat cursus a. Nam a
+              convallis libero, eget viverra diam.
+            </p>
+          </div>
+        </div>
+      </section>
+    </section> -->
+
+    <section class="department">
+      <div class="department-heading"><h1>DEPARTMENTS</h1></div>
+      <div class="department-content">
+        <div class="department-solo department-1">
+          <div class="solo-dep-heading"><h1>DEPARTMENT OF XYZ</h1></div>
+          <div class="department-member department-member-1">
+            <div class="dep-mem-1-1 dep-mem">
+              <img src="IMG/DEPARTMENT/Default.png" alt="" />
+              <h1>NAME</h1>
+            </div>
+            <div class="dep-mem-1-2 dep-mem">
+              <img src="IMG/DEPARTMENT/Default.png" alt="" />
+              <h1>NAME</h1>
+            </div>
+          </div>
+        </div>
+        <div class="department-solo department-2">
+          <div class="solo-dep-heading"><h1>DEPARTMENT OF XYZ</h1></div>
+          <div class="department-member department-member-1">
+            <div class="dep-mem-1-1 dep-mem">
+              <img src="IMG/DEPARTMENT/Default.png" alt="" />
+              <h1>NAME</h1>
+            </div>
+            <div class="dep-mem-1-2 dep-mem">
+              <img src="IMG/DEPARTMENT/Default.png" alt="" />
+              <h1>NAME</h1>
+            </div>
+          </div>
+        </div>
+        <div class="department-solo department-3">
+          <div class="solo-dep-heading"><h1>DEPARTMENT OF XYZ</h1></div>
+          <div class="department-member department-member-1">
+            <div class="dep-mem-1-1 dep-mem">
+              <img src="IMG/DEPARTMENT/Default.png" alt="" />
+              <h1>NAME</h1>
+            </div>
+            <div class="dep-mem-1-2 dep-mem">
+              <img src="IMG/DEPARTMENT/Default.png" alt="" />
+              <h1>NAME</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script>
+      AOS.init();
+    </script>
+  </body>
+</html>
