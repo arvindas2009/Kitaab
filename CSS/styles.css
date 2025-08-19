@@ -367,6 +367,20 @@
   overflow: hidden;
 }
 
+.department::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("../IMG/DEPARTMENT/DEPARTMENT\ -\ BACKGROUND.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  filter: blur(12px) brightness(0.8); /* Darken via brightness */
+  z-index: 0;
+  pointer-events: none; /* Prevent interaction */
+}
+
 /* scrolling container inside .department */
 .department-content {
   z-index: 2;
@@ -532,4 +546,53 @@
   color: white;
   margin-bottom: 10px;
   padding: 20px 0;
+}
+
+.dep-top-right {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: auto;
+}
+
+.dep-bottom-left {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: auto;
+}
+
+@media (max-width: 500px) {
+  /* hide all real page content */
+  html,
+  body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden !important;
+  }
+
+  /* remove every child so only the overlay (body::before) is visible */
+  body > * {
+    display: none !important;
+  }
+
+  /* full-screen readable message */
+  body::before {
+    content: "THIS SITE ONLY WORKS ON DESKTOP";
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ffffff;
+    color: #000000;
+    z-index: 99999;
+    font-family: "Montserrat", sans-serif;
+    font-size: 18px;
+    text-align: center;
+    padding: 24px;
+    box-sizing: border-box;
+    white-space: pre-wrap;
+  }
 }
