@@ -2,7 +2,158 @@
   margin: 0;
   padding: 0;
   overflow-x: hidden;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Montserrat", sans-serif !important;
+}
+/* slightly lower radii for UI panels — tweak --br to taste */
+:root {
+  --br-ui: 20px;
+  --dep-photo-size: 240px; /* increased so names fit on one line */
+}
+
+/* make images inside each department-solo a consistent circular size */
+.department-solo .dep-photo,
+.department-solo img {
+  width: var(--dep-photo-size) !important;
+  height: var(--dep-photo-size) !important;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  background-size: cover; /* for background-image divs */
+  background-position: center;
+  border-radius: 50% !important;
+  display: block !important;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+/* center everything horizontally inside each department-solo (keeps existing heights/widths) */
+.department-solo {
+  display: flex; /* already used, but ensure column layout centers children */
+  flex-direction: column;
+  align-items: center; /* horizontal center */
+  text-align: center;
+}
+
+/* ensure member blocks stack centre and don't force extra width changes */
+.department-solo .department-member {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+}
+
+/* keep per-member card layout but center contents and make cards wider */
+.department-solo .dep-mem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0 20px;
+  width: calc(var(--dep-photo-size) + 80px); /* wider card so name fits */
+  box-sizing: border-box;
+  gap: 8px;
+}
+
+/* Force h1/h2 to remain on a single line and truncate if too long */
+.department-solo .dep-mem h1,
+.department-solo .dep-mem h2 {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: calc(
+    var(--dep-photo-size) + 72px
+  ); /* keep title within the visual card width */
+}
+
+/* Make department names fully visible: allow wrapping and use full card width */
+.department-solo .dep-mem h1,
+.department-solo .dep-mem h2 {
+  white-space: normal; /* allow wrapping instead of truncation */
+  overflow: visible; /* ensure not clipped */
+  text-overflow: clip;
+  width: 100%; /* fill the available card width */
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 0 6px; /* small horizontal padding so text doesn't touch edges */
+  word-break: break-word; /* break long words if needed */
+  hyphens: auto;
+  text-align: center; /* center align to match layout */
+  line-height: 1.15;
+}
+
+/* Slightly reduce font-size on very narrow screens so names remain readable */
+@media (max-width: 420px) {
+  .department-solo .dep-mem h1 {
+    font-size: 1rem;
+  }
+  .department-solo .dep-mem h2 {
+    font-size: 0.9rem;
+  }
+}
+
+/* mobile adjustment (smaller photos but still wider cards) */
+@media (max-width: 700px) {
+  :root {
+    --dep-photo-size: 160px; /* mobile photo size */
+  }
+
+  .department-solo .dep-photo,
+  .department-solo img {
+    width: var(--dep-photo-size) !important;
+    height: var(--dep-photo-size) !important;
+  }
+
+  .department-solo .dep-mem {
+    width: calc(var(--dep-photo-size) + 48px);
+    padding: 0 12px;
+  }
+
+  .department-solo .dep-mem h1,
+  .department-solo .dep-mem h2 {
+    max-width: calc(var(--dep-photo-size) + 40px);
+    font-size: 0.95rem;
+  }
+}
+
+/* ...existing code... */
+
+/* apply reduced radius to common UI containers */
+.home-content,
+.home-content-text,
+.about-content,
+.department-content,
+.department-solo,
+.solo-dep-heading,
+.department-heading,
+.team-content,
+.achievement-content,
+.nav-list,
+.nav-list li,
+.home-content > div > button,
+.vision-text,
+.vision-container div,
+.vision-container-2 div {
+  border-radius: var(--br-ui) !important;
+}
+
+/* keep member photos perfectly circular */
+.dep-mem .dep-photo,
+.dep-mem img,
+.department .dep-photo {
+  border-radius: 50% !important;
+}
+
+/* slightly reduce very large radii that were on specific elements */
+.solo-dep-heading {
+  border-radius: calc(var(--br-ui) * 1.5) !important;
+}
+
+.department-heading {
+  border-radius: calc(var(--br-ui) * 2) !important;
+}
+
+.Hamburger {
+  display: none;
+  opacity: 0;
 }
 
 .navbar {
@@ -90,8 +241,10 @@
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  filter: blur(var(--home-blur, 0px));
-  transition: filter 0.2s;
+
+  /* IMPORTANT: do not blur the whole .home container anymore */
+  filter: none !important;
+  /* remove transition here — keep it on the background layer */
 }
 
 .home::before {
@@ -103,9 +256,17 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  filter: blur(var(--home-blur, 10px)); /* Use CSS variable for blur */
+
+  /* only blur the background layer using the CSS variable controlled by JS */
+  filter: blur(var(--home-blur, 10px));
+  transition: filter 0.2s ease;
   z-index: 0;
-  transition: filter 0.2s;
+}
+
+/* ensure content sits above the blurred background */
+.home-content {
+  z-index: 2;
+  position: relative;
 }
 
 /* Add a separate blur layer only behind .home-content */
@@ -120,7 +281,7 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  filter: blur(20px); /* Stronger/different blur for content */
+  filter: blur(5px); /* Stronger/different blur for content */
   z-index: 1;
   pointer-events: none; /* Prevent interaction */
 }
@@ -406,7 +567,7 @@
   overscroll-behavior: contain; /* prevents the page from receiving scroll when at the edges */
 
   /* optional: snap children vertically */
-  scroll-snap-type: y proximity;
+  /* scroll-snap-type: y proximity; */
   gap: 20px;
 
   position: relative;
@@ -503,20 +664,22 @@
   text-align: center;
   background-color: rgba(61, 116, 89, 0.8);
   height: 80px;
-  width: 25%;
-  margin-top: 2%;
-  margin-left: 2%;
+  min-width: 20%;
+  max-width: 65%;
+  margin-top: 0.2%;
+  margin-left: 1.5%;
   box-sizing: border-box;
   pointer-events: auto;
   border-radius: 100px;
 }
 
 .solo-dep-heading h1 {
-  font-size: 35x;
+  font-size: 35px;
   font-weight: 800;
   color: white;
+  padding: 0 20px;
   box-sizing: border-box;
-  /* padding: 8px 24px; */
+
   pointer-events: auto;
 }
 
@@ -545,7 +708,26 @@
   font-weight: 800;
   color: white;
   margin-bottom: 10px;
-  padding: 20px 0;
+}
+
+/* Make member photos circular (both background divs and <img> tags) */
+.dep-mem .dep-photo,
+.dep-mem img {
+  width: 100%;
+  aspect-ratio: 1 / 1; /* keep square shape */
+  height: auto;
+  object-fit: cover; /* crop nicely for <img> */
+  background-size: cover; /* for background-image divs */
+  background-position: center;
+  border-radius: 50%; /* make circle */
+  overflow: hidden;
+  display: block !important; /* ensure visible if previously hidden */
+}
+
+.department-member h2 {
+  color: white;
+  font-size: 20px;
+  font-weight: 200;
 }
 
 .dep-top-right {
@@ -562,37 +744,819 @@
   height: auto;
 }
 
-@media (max-width: 500px) {
-  /* hide all real page content */
-  html,
-  body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    overflow: hidden !important;
-  }
+/* remove any global .nav-hide behaviour (no-op outside mobile) */
+.nav-hide {
+}
 
-  /* remove every child so only the overlay (body::before) is visible */
-  body > * {
-    display: none !important;
-  }
-
-  /* full-screen readable message */
-  body::before {
-    content: "THIS SITE ONLY WORKS ON DESKTOP";
+@media (max-width: 700px) {
+  /* only on small screens: show hamburger and control navbar visibility/animation */
+  .Hamburger {
+    display: block;
     position: fixed;
-    inset: 0;
+    opacity: 1;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    z-index: 1001;
+  }
+
+  /* mobile navbar: off-canvas by default and animated when toggled */
+  .navbar {
+    top: 0;
+    height: 100vh;
+    width: 100%;
+    border-radius: 0;
+    transform: translateY(-110%);
+    opacity: 0;
+    transition: transform 320ms cubic-bezier(0.16, 0.84, 0.44, 1),
+      opacity 220ms ease;
+    will-change: transform, opacity;
+    pointer-events: none;
+
+    /* translucent blurred background so page shows through with blur */
+    background-color: rgba(10, 10, 10, 0.45);
+    backdrop-filter: blur(8px) saturate(1.05);
+    -webkit-backdrop-filter: blur(8px) saturate(1.05);
+  }
+
+  /* visible state when nav is toggled (remove .nav-hide via JS) */
+  .navbar:not(.nav-hide) {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* keep .nav-hide inert on desktop (no global side-effects),
+     but on mobile it's the hidden state handled above */
+  .nav-hide {
+    /* intentionally empty here so the animation relies on .navbar.nav-hide rules above */
+  }
+
+  .nav-list {
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: #ffffff;
-    color: #000000;
-    z-index: 99999;
-    font-family: "Montserrat", sans-serif;
-    font-size: 18px;
+    gap: 40px;
+  }
+
+  .nav-list li:last-child {
+    display: none;
+  }
+
+  .nav-list li {
+    margin: 0;
+    width: auto;
+    height: 60px;
+    padding: 0 40px;
+    font-size: 28px;
+    border-radius: 100px;
+  }
+
+  .home-content {
+    height: 100vh;
+    width: 100%;
+    border-radius: 0;
+    color: rgba(red, green, blue, 0);
+  }
+
+  .home-content > div {
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  #welcome {
+    font-size: 30px;
+    letter-spacing: 10px;
+  }
+
+  #heading {
+    font-size: 5rem;
+  }
+
+  .kitaab-logo-home {
+    position: absolute;
+    width: 100%;
+    margin-bottom: 50%;
+    rotate: 0deg;
+  }
+
+  .home-content > div > button {
+    display: flex;
+    width: 80%;
+    align-items: center;
+    justify-content: center;
     text-align: center;
-    padding: 24px;
+    background: rgba(220, 220, 220, 0.2);
+    margin-top: 20px;
+  }
+
+  .home-content > div > button > a {
+    padding: 20px 0;
+    align-self: center;
+    text-align: center;
+  }
+
+  .home-content > div > img {
+    display: none;
+    margin-bottom: 20px;
+  }
+
+  /* Make the about panel fit and be readable on small screens */
+  .about {
+    height: auto; /* allow page to grow vertically */
+    padding: 2rem 0 3rem; /* breathing room above/below the panel */
+    overflow: visible;
+  }
+
+  .about-content {
+    width: min(92%, 720px); /* responsive width */
+    max-width: 100%;
+    margin: 4vh auto 0; /* center and give top space */
+    padding: 1rem 1.25rem; /* comfortable padding */
+    height: auto;
+    max-height: calc(100vh - 120px); /* keep panel within viewport */
+    overflow-y: auto; /* allow inner scrolling if needed */
+    -webkit-overflow-scrolling: touch;
+    border-radius: 18px; /* smaller radius on mobile */
+    background: rgba(0, 0, 0, 0.88); /* slightly darker for contrast */
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+    z-index: 3;
     box-sizing: border-box;
-    white-space: pre-wrap;
+  }
+
+  .about-content h1 {
+    font-size: clamp(1.25rem, 6vw, 2.25rem); /* scale with viewport */
+    line-height: 1.08;
+    margin: 0 0 0.5rem 0;
+    white-space: normal;
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+
+  .about-content p {
+    font-size: clamp(0.95rem, 3.2vw, 1.05rem);
+    line-height: 1.5;
+    margin: 0 0 1rem 0;
+    text-align: left;
+    hyphens: auto;
+    overflow-wrap: anywhere;
+  }
+
+  /* hide or shrink large decorative images that can overlap text */
+  .about-logo {
+    display: none;
+  }
+
+  /* ensure the blurred background doesn't push content wider */
+  .about::before {
+    background-position: center;
+    background-size: cover;
+    /* optionally reduce blur/brightness on mobile */
+    filter: blur(10px) brightness(0.35);
+  }
+
+  /* disable scroll-driven blur on small screens; keep background blur constant */
+  .home {
+    /* prevent dynamic blur applied via --home-blur (JS sets this variable inline) */
+    filter: none !important;
+  }
+
+  .home::before {
+    /* fixed background blur for mobile */
+    filter: blur(10px) !important;
+  }
+
+  /* Ensure about layout stacks on mobile so the image can appear above the content */
+  .about {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .about-text {
+    display: none;
+  }
+
+  /* tighten spacing so image doesn't overlap text */
+  .about-content {
+    margin-top: 0.5rem; /* small gap under image */
+    width: min(92%, 720px);
+    box-sizing: border-box;
+    border-radius: 30px;
+  }
+
+  .about-content h1 {
+    font-size: 50px;
+    padding: 50px;
+    overflow: hidden;
+  }
+
+  /* restore normal page scrolling on mobile */
+  html,
+  body {
+    height: auto;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* keep horizontal scrolling prevented */
+    overflow-y: auto !important; /* allow vertical scrolling again */
+    -webkit-overflow-scrolling: touch; /* smooth native scrolling on iOS */
+  }
+
+  /* ensure main sections can grow and not be clipped */
+  .home,
+  .about,
+  .team,
+  .department {
+    min-height: auto;
+    height: auto;
+  }
+
+  /* keep about-content scrollable when it exceeds viewport */
+  .about-content {
+    max-height: calc(100vh - 120px);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .department {
+    height: 100vh;
+  }
+
+  .department-content {
+    padding: 15px 0;
+    height: 85vh;
+  }
+
+  .department-heading {
+    width: 80vw;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+    -webkit-box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+    z-index: 20;
+  }
+
+  .department-heading h1 {
+    font-size: 30px;
+  }
+
+  .department-solo {
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    border-radius: 40px;
+    background: rgba(52, 94, 73, 0.6);
+    padding: 10px 0;
+  }
+
+  .solo-dep-heading {
+    position: relative;
+    width: 90%;
+    height: auto;
+    top: 0;
+    margin-bottom: 80;
+  }
+
+  .solo-dep-heading h1 {
+    font-size: 20px;
+    padding: 10px 2px;
+  }
+
+  .dep-mem h1 {
+    font-size: 15px;
+    padding: 10px 5px;
+  }
+}
+
+/* ABOUT */
+
+.about-1 {
+  position: relative;
+  justify-content: center;
+  align-items: center;
+
+  height: 100vh; /* Full height minus navbar */
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+
+  background: url("../IMG/ABOUT/GREEN\ PAPER\ BACKGROUND.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.about-1::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100vw;
+  background: rgba(0, 0, 0, 0.6);
+
+  z-index: 0;
+}
+
+.vision-heading {
+  position: relative;
+  margin-top: 1%; /* Adjusted for better visibility */
+  font-size: 10rem;
+  letter-spacing: 20px;
+  color: #ffffff;
+  text-align: center;
+  width: 80%; /* Adjust width as needed */
+
+  font-family: "montserrat", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+
+  z-index: 1;
+}
+
+.vision-container h1,
+.vision-container-2 h1 {
+  position: relative;
+  font-size: 40px; /* Adjusted for better readability */
+  color: white;
+}
+
+.vision-eclipse {
+  position: absolute;
+  margin-bottom: 20px;
+  max-height: 11 0%;
+  min-width: 100vw;
+  z-index: 0;
+}
+
+.vision-container p,
+.vision-container-2 p {
+  position: relative;
+  font-size: 24px; /* Adjusted for better readability */
+  color: #ffffff;
+}
+
+.vision-container {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  width: 90vw;
+  top: 2%;
+  /* background-color: #a1e9ff; */
+}
+
+.vision-container img,
+.vision-container-2 img {
+  height: 300px;
+}
+
+.vision-container-2 {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  width: 90vw;
+  top: 10%;
+  /* background-color: #a1e9ff; */
+}
+
+.vision-container-2 div {
+  text-align: end;
+}
+
+.vision-container div,
+.vision-container-2 div {
+  width: 50%;
+  padding: 20px; /* Add padding for better spacing */
+}
+
+.achievement {
+  position: relative;
+  height: 100%;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background: url("../IMG/ABOUT/GREEN\ PAPER\ BACKGROUND.png") no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.achievement > * {
+  z-index: 1;
+}
+
+.achievement::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100vw;
+  background: rgba(0, 0, 0, 0.8);
+
+  z-index: 0;
+}
+
+.achievement-heading {
+  position: relative;
+  font-size: 8rem; /* Adjusted for better visibility */
+  letter-spacing: 20px;
+  color: #ffffff;
+  text-align: center;
+
+  font-family: "Montserrat", sans-serif;
+  font-weight: 800;
+  font-style: normal;
+
+  margin-top: 4%; /* Adjusted for better visibility */
+  padding-bottom: 3%;
+
+  z-index: 1;
+}
+
+.achievement-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 90vw;
+  top: 2%;
+  padding: 20px 0;
+  border-radius: 50px;
+
+  background-color: black;
+}
+
+.achievement-item {
+  position: relative;
+  width: 90%;
+  margin: 20px auto; /* Center the items */
+  padding: 20px;
+  border-radius: 10px;
+  color: #ffffff;
+  text-align: left;
+  justify-content: center;
+
+  display: flex;
+  flex-direction: row;
+
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+
+  z-index: 1;
+}
+
+.achievement-item img {
+  width: 25%; /* Adjust size as needed */
+  height: auto;
+  margin-right: 20px; /* Space between image and text */
+}
+
+.achievement-item div,
+.achievement-item-2 div {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.achievement-item h2 {
+  font-size: 50px;
+}
+
+.achievement-item p {
+  font-size: 24px;
+  margin-top: 10px;
+}
+
+.achievement-item-2 div {
+  text-align: right !important;
+}
+
+.achievement-item-2 h2,
+.achievement-item-2 p {
+  margin-right: 20px;
+}
+
+.team {
+  position: relative;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+
+  background: url("../IMG/NETHRA AND KASVI - BLURRED.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden; /* Prevent overflow */
+}
+
+.team-content {
+  z-index: 2;
+  width: 90%;
+  max-height: 90vh;
+  /* background-color: rgba(0, 0, 0, 0.5); */
+  /* border-radius: 50px; */
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  /* box-shadow: 5px 5px 20px; */
+  overflow-y: auto;
+  overflow-x: visible;
+}
+
+/* background texture behind content */
+/*
+.team-content::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 200%;
+  background: url("../IMG/PAPER TEXTURE.jpg");
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  background-repeat: repeat;
+  filter: blur(5px); /* Stronger/different blur for content */
+/*
+  z-index: -2; /* moved behind the overlay */
+/*
+  border-radius: inherit;
+/*
+  pointer-events: none; /* Prevent interaction */
+/*
+}
+*/
+/* dark overlay above the image, below the content */
+.team-content::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  /* background-color: rgba(0, 0, 0, 0.8); adjust alpha to taste */
+  z-index: -1; /* sits above ::before and below the content */
+  border-radius: inherit;
+  pointer-events: none; /* Prevent interaction */
+}
+
+.members {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 88%;
+  overflow: visible; /* Allow content to expand */
+  height: auto; /* Adjust height to fit content */
+  /* Remove overflow-y: auto; */
+}
+
+.members2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 88%;
+  height: auto;
+  overflow: visible; /* Allow content to expand */
+  height: auto; /* Adjust height to fit content */
+  /* Remove overflow-y: auto; */
+}
+
+.member-1 {
+  margin-top: 8% !important;
+}
+
+.members h1,
+.members2 h1 {
+  font-weight: 800;
+  font-size: 280%;
+  color: white;
+}
+
+.members h2,
+.members2 h2 {
+  font-weight: 800;
+  font-size: 200%;
+  color: white;
+}
+
+.members p,
+.members2 p {
+  padding: 5px 0 0 0;
+  font-size: 140%;
+  color: white;
+}
+
+.members div {
+  text-align: start;
+  padding: 0 20px;
+}
+
+.members2 div {
+  text-align: end;
+  padding: 0 20px;
+}
+
+.members img,
+.members2 img {
+  width: 500px;
+  height: auto;
+}
+
+.team-divider {
+  /* display: block; */
+  width: 100%;
+  min-height: 181px;
+  height: auto;
+  margin: 5px auto;
+}
+
+@media (max-width: 700px) {
+  .Hamburger {
+    display: block;
+    position: fixed;
+    opacity: 1;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    z-index: 1001;
+  }
+
+  /* mobile navbar: off-canvas by default and animated when toggled */
+  .navbar {
+    top: 0;
+    height: 100vh;
+    width: 100%;
+    border-radius: 0;
+    transform: translateY(-110%);
+    opacity: 0;
+    transition: transform 320ms cubic-bezier(0.16, 0.84, 0.44, 1),
+      opacity 220ms ease;
+    will-change: transform, opacity;
+    pointer-events: none;
+
+    /* translucent blurred background so page shows through with blur */
+    background-color: rgba(10, 10, 10, 0.45);
+    backdrop-filter: blur(8px) saturate(1.05);
+    -webkit-backdrop-filter: blur(8px) saturate(1.05);
+  }
+
+  /* visible state when nav is toggled (remove .nav-hide via JS) */
+  .navbar:not(.nav-hide) {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* keep .nav-hide inert on desktop (no global side-effects),
+     but on mobile it's the hidden state handled above */
+  .nav-hide {
+    /* intentionally empty here so the animation relies on .navbar.nav-hide rules above */
+  }
+
+  .nav-list {
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+  }
+
+  .nav-list li:last-child {
+    display: none;
+  }
+
+  .nav-list li {
+    margin: 0;
+    width: auto;
+    height: 60px;
+    padding: 0 40px;
+    font-size: 28px;
+    border-radius: 100px;
+  }
+
+  .about {
+    height: auto;
+    padding: 20px 0;
+  }
+
+  .vision-heading {
+    font-size: 80px;
+    width: 100%;
+    margin-top: 0;
+    letter-spacing: 10px;
+  }
+
+  .vision-container,
+  .vision-container-2 {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center !important;
+    align-items: center !important;
+    padding: 20px 0;
+  }
+
+  .vision-container div,
+  .vision-container-2 div {
+    width: 90%; /* increased from 50% */
+    padding: 10px;
+    margin: 0 auto;
+  }
+
+  .vision-container h1,
+  .vision-container-2 h1 {
+    font-size: 32px;
+    text-align: center;
+  }
+
+  .vision-container-2 {
+    flex-direction: column-reverse;
+  }
+
+  .vision-text {
+    width: 90%;
+    min-width: 0;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 15px;
+    height: auto;
+    max-height: none;
+    overflow: visible;
+    text-wrap: balance;
+    text-align: center !important;
+    font-size: clamp(0.9rem, 3vw, 1.1rem);
+    line-height: 1.4;
+    box-sizing: border-box;
+    word-wrap: break-word;
+    display: block; /* ensure block-level display */
+    position: relative; /* ensure proper stacking */
+  }
+}
+
+/* Make all photos inside department-solo a consistent circular size */
+/* increased 20% so h2 / names have more room */
+:root {
+  --dep-photo-size: 216px; /* was 180px */
+}
+
+.department-solo .dep-photo,
+.department-solo img,
+.department-solo .dep-mem img {
+  width: var(--dep-photo-size) !important;
+  height: var(--dep-photo-size) !important;
+  aspect-ratio: 1 / 1;
+  object-fit: cover; /* crop to fill */
+  background-size: cover; /* for background-image divs */
+  background-position: center;
+  border-radius: 50% !important;
+  display: block !important;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+/* Make each member card same width so department-solo rows align */
+.department-solo .dep-mem {
+  width: calc(var(--dep-photo-size) + 48px);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+}
+
+/* Responsive — increase mobile size by 20% as well */
+@media (max-width: 700px) {
+  :root {
+    --dep-photo-size: 144px; /* was 120px */
+  }
+
+  .department-solo .dep-mem {
+    width: calc(var(--dep-photo-size) + 32px);
   }
 }

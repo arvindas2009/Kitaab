@@ -1,39 +1,39 @@
-<svg width="1758" height="161" viewBox="0 0 1758 161" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g filter="url(#filter0_d_82_5)">
-<path d="M1560.64 73.5C1560.64 73.5 1528.49 73.5 1688.5 91.0998C1848.51 108.7 1816.36 141 1816.36 141L1816.36 6.00001C1816.36 6.00001 1843.28 48.3573 1688.5 60.9286C1533.72 73.5 1560.64 73.5 1560.64 73.5Z" fill="url(#paint0_linear_82_5)"/>
-</g>
-<line x1="244.997" y1="79.5" x2="1496" y2="72.5" stroke="black"/>
-<g filter="url(#filter1_d_82_5)">
-<path d="M179.358 79.5C179.358 79.5 211.509 79.5 51.5 97.0998C-108.509 114.7 -76.3579 147 -76.3579 147L-76.3579 12C-76.3579 12 -103.275 54.3573 51.5 66.9286C206.275 79.5 179.358 79.5 179.358 79.5Z" fill="url(#paint1_linear_82_5)"/>
-</g>
-<defs>
-<filter id="filter0_d_82_5" x="1548" y="0" width="281" height="155" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-<feFlood flood-opacity="0" result="BackgroundImageFix"/>
-<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-<feOffset dy="4"/>
-<feGaussianBlur stdDeviation="5"/>
-<feComposite in2="hardAlpha" operator="out"/>
-<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
-<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_82_5"/>
-<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_82_5" result="shape"/>
-</filter>
-<filter id="filter1_d_82_5" x="-89" y="6" width="281" height="155" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-<feFlood flood-opacity="0" result="BackgroundImageFix"/>
-<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-<feOffset dy="4"/>
-<feGaussianBlur stdDeviation="5"/>
-<feComposite in2="hardAlpha" operator="out"/>
-<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
-<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_82_5"/>
-<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_82_5" result="shape"/>
-</filter>
-<linearGradient id="paint0_linear_82_5" x1="1558" y1="74" x2="1797" y2="74" gradientUnits="userSpaceOnUse">
-<stop stop-color="#94D685"/>
-<stop offset="1" stop-color="#6C9B6C"/>
-</linearGradient>
-<linearGradient id="paint1_linear_82_5" x1="182" y1="80" x2="-57" y2="80" gradientUnits="userSpaceOnUse">
-<stop stop-color="#94D685"/>
-<stop offset="1" stop-color="#6C9B6C"/>
-</linearGradient>
-</defs>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1758 161">
+  <!-- Generator: Adobe Illustrator 29.1.0, SVG Export Plug-In . SVG Version: 2.1.0 Build 142)  -->
+  <defs>
+    <style>
+      .st0 {
+        fill: none;
+        stroke: #000;
+      }
+
+      .st1 {
+        fill: url(#linear-gradient1);
+      }
+
+      .st2 {
+        display: none;
+      }
+
+      .st3 {
+        fill: url(#linear-gradient);
+      }
+    </style>
+    <linearGradient id="linear-gradient" x1="1558" y1="88.5" x2="1797" y2="88.5" gradientTransform="translate(0 162) scale(1 -1)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#94d685"/>
+      <stop offset="1" stop-color="#6c9b6c"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient1" x1="182" y1="82.5" x2="-57" y2="82.5" gradientTransform="translate(0 162) scale(1 -1)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#94d685"/>
+      <stop offset="1" stop-color="#6c9b6c"/>
+    </linearGradient>
+  </defs>
+  <g class="st2">
+    <path class="st3" d="M1560.6,73.5s-32.2,0,127.9,17.6c160,17.6,127.9,49.9,127.9,49.9V6s26.9,42.4-127.9,54.9c-154.8,12.6-127.9,12.6-127.9,12.6Z"/>
+  </g>
+  <line class="st0" x1="245" y1="79.5" x2="1496" y2="72.5"/>
+  <g class="st2">
+    <path class="st1" d="M179.4,79.5s32.2,0-127.9,17.6c-160,17.6-127.9,49.9-127.9,49.9V12s-26.9,42.4,127.9,54.9c154.8,12.6,127.9,12.6,127.9,12.6Z"/>
+  </g>
 </svg>
