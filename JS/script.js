@@ -1,5 +1,6 @@
 window.addEventListener("scroll", function () {
   const homeSection = document.querySelector(".home");
+  const navbar = document.querySelector(".navbar");
   if (!homeSection) return; // guard
 
   const homeRect = homeSection.getBoundingClientRect();
@@ -23,6 +24,15 @@ window.addEventListener("scroll", function () {
   }
 
   homeSection.style.setProperty("--home-blur", `${blurValue}px`);
+
+  // Add/remove expanded navbar state (apply on all screen sizes)
+  if (navbar) {
+    if (homeRect.top < 0) {
+      navbar.classList.add("scrolled");
+    } else {
+      navbar.classList.remove("scrolled");
+    }
+  }
 });
 
 document.addEventListener("DOMContentLoaded", () => {
